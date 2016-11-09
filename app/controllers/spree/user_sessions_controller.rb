@@ -7,7 +7,10 @@ class Spree::UserSessionsController < Devise::SessionsController
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Order
-  include Spree::Core::ControllerHelpers::SSL
+  #include Spree::Core::ControllerHelpers::SSL
+  if defined? Spree::Core::ControllerHelpers::SSL
+    puts "Please return to using spree_auth_devise on branch 2-0-stable" and exit 1
+  end
 
   ssl_required :new, :create, :destroy, :update
   ssl_allowed :login_bar
